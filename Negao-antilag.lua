@@ -24,6 +24,50 @@ for _, particleEmitter in ipairs(game:GetService("Workspace"):GetDescendants()) 
 
 end
 
+-- Otimize as roupas dos jogadores
+
+local function optimizeClothing(character)
+
+    for _, descendant in ipairs(character:GetDescendants()) do
+
+        if descendant:IsA("Clothing") or descendant:IsA("ShirtGraphic") or descendant:IsA("Pants") then
+
+            descendant:Destroy()
+
+        end
+
+    end
+
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+
+    if player ~= game.Players.LocalPlayer then
+
+        player.CharacterAdded:Connect(function(character)
+
+            optimizeClothing(character)
+
+        end)
+
+    end
+
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+
+    if player ~= game.Players.LocalPlayer then
+
+        player.CharacterAdded:Connect(function(character)
+
+            optimizeClothing(character)
+
+        end)
+
+    end
+
+end)
+
 -- Otimize a taxa de atualização do jogo para 60 FPS
 
 runService.Stepped:Connect(function()
