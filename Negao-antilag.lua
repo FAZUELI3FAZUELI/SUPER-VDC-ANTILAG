@@ -119,3 +119,4 @@ gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 wait(7)
 
 gui:Destroy()
+1
